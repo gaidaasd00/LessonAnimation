@@ -12,26 +12,45 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            Button(action: {awardIsShowing.toggle()}) {
+            Button(action: buttonAction) {
                 HStack {
-                    if awardIsShowing {
-                        Text("Hide Award")
-                        Image(systemName: "chevron.up.square")
-                    } else {
-                        Text("Show Award")
-                        Image(systemName: "chevron.down.square")
-                    }
+                    Text(awardIsShowing ? "Hide Award" : "Show Award")
+                    Spacer()
+                    Image(systemName: "chevron.up.square")
+                        .scaleEffect(awardIsShowing ? 2 : 1)
+                        .rotationEffect(.degrees(awardIsShowing ? 0 : 180))
                 }
+            }
+            Spacer()
+            if awardIsShowing {
+                GradientRectangles()
+                    .frame(width: 250, height: 250)
+                    .transition(.leadingSlide)
             }
             Spacer()
         }
         .font(.headline)
         .padding()
     }
+    private func buttonAction() {
+        withAnimation {
+            awardIsShowing.toggle()
+        }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+    }
+}
+
+extension AnyTransition {
+    static var leadingSlide: AnyTransition {
+        let insertion = AnyTransition.move(edge: .leading)
+            .combined(with: .scale)
+        let removal = AnyTransition.scale
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
     }
 }
