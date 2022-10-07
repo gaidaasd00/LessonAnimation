@@ -16,6 +16,8 @@ struct AvardsView: View {
                         .frame(width: 200, height: 200)
                     PathView()
                         .frame(width: 200, height: 200)
+                    CurvesView()    
+                        .frame(width: 200, height: 200)
                 }
             }
             .navigationTitle("Awards")

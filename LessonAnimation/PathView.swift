@@ -27,7 +27,7 @@ struct PathView: View {
             }
             .fill(Color(red: 0.4, green: 0.4, blue: 0.4))
             
-            //рфзделитель
+            //разделитель
             Path { path in
                 path.move(to: CGPoint(x: middle, y: nearLine))
                 path.addLine(to: CGPoint(x: middle, y: farLine))
