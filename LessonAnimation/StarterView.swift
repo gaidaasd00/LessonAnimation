@@ -20,7 +20,7 @@ struct StarterView: View {
                     Image(systemName: "cart")
                     Text("CartReacing")
                 }
-            AvardsView()
+            AwardsView()
                 .tabItem {
                     Image(systemName: "ruler.fill")
                     Text("Awords")
